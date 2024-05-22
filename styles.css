@@ -1,6 +1,5 @@
 * {
     box-sizing: border-box;
-    
 }
 
 .squares {
@@ -8,13 +7,17 @@
     flex-wrap: wrap;
 }
 
-.square {
-    min-height: 16.5px;
-    min-width: 16.5px;
+.squareBorder {
     border: 1px solid black;
     margin-bottom: 1px;
     margin-right: 1px;
     margin-left: 1px;
+}
+
+.squareBackground {
+    min-height: inherit;
+    background: black;
+    opacity: 0;
 }
 
 .button {

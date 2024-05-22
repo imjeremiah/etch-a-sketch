@@ -1,5 +1,4 @@
 const squares = document.querySelector(".squares");
-
 const body = document.querySelector("body");
 
 const button = document.createElement("button");
@@ -17,14 +16,35 @@ button.addEventListener("click", () => {
     createGrid(size);
 });
 
+function changeOpacity(squareID) {
+    let currentSquare = document.querySelector(`#${squareID}`);
+    let squareStyle = window.getComputedStyle(currentSquare);
+    let opacity = squareStyle.getPropertyValue("opacity");
+    console.log(typeof opacity);
+    opacity = Number(opacity);
+    opacity += .10;
+    currentSquare.style.opacity = opacity;
+}
+
 function createGrid(size) {
+    let k = 1;
+    let screen = (930 - (size * 4)) / size;
     for (let i = 1; i <= size; i++) {
         const row = document.createElement("div");
         for (let j = 1; j <= size; j++) {
             const column = document.createElement("div");
-            column.classList.add("square");
-            column.addEventListener("mouseenter", () => {
-                column.style.backgroundColor = "black";
+            const innerColumn = document.createElement("div");
+            column.appendChild(innerColumn);
+            innerColumn.classList.add("squareBackground");
+            innerColumn.setAttribute("id", `s${k++}`);
+            column.classList.add("squareBorder");
+            column.style.minHeight = `${screen}px`;
+            column.style.minWidth = `${screen}px`;
+            innerColumn.addEventListener("mouseenter", (e) => {
+                let squareID = e.target.id;
+                // const randomColor = Math.floor(Math.random()*16777215).toString(16);
+                // column.style.backgroundColor = `#${randomColor}`;
+                changeOpacity(squareID);
             });
             row.appendChild(column);
         }
