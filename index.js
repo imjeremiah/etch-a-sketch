@@ -11,7 +11,7 @@ let size = 16;
 button.addEventListener("click", () => {
     size = prompt("Resize Grid (up to 100): ");
     squares.innerHTML = "";
-    if (size < 1) size = 1;
+    if (size < 1) size = 16;
     if (size > 100) size = 100;
     createGrid(size);
 });
